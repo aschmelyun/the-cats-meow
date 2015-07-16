@@ -6,7 +6,21 @@ MainMenuState.prototype = {
 			.addKey(Phaser.Keyboard.ENTER);
 
 		this.enterKey.onDown.add(this.tweenPlayState, this);
+
+		this.menuText = this.game.add.text(
+			this.world.centerX,
+			this.world.height/2,
+			"",
+			{
+				size: "32px",
+				fill: "#FFF",
+				align: "center"
+			}
+		);
+		this.menuText.anchor.setTo(0.5, 0.5);
+		this.menuText.setText("Press Enter to Start");
 	},
+
 	tweenPlayState: function() {
 		var tweenMenuShrink = this.game.add.tween({})
 			.to({x: 0, y: 0}, 250);

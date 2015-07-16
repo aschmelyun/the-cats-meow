@@ -6,6 +6,7 @@ PreloadState.prototype = {
 		// images, spritesheets, audio, etc...
 		this.game.load.image('player', 'assets/player.png');
 	},
+	
 	create: function() {
 		this.game.state.start('main_menu');
 	}
