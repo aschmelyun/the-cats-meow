@@ -7,12 +7,18 @@ MainMenuState.prototype = {
 
 		this.enterKey.onDown.add(this.tweenPlayState, this);
 
+		this.background = this.game.add.tileSprite(0, 0, 1024, 500, 'background');
+
+		var player_idle = this.game.add.sprite(300, 400, 'player_idle');
+		player_idle.animations.add('idle');
+		player_idle.animations.play('idle', 10, true);
+
 		this.menuText = this.game.add.text(
 			this.world.centerX,
 			this.world.height/2,
 			"",
 			{
-				size: "32px",
+				font: "32px Segoe UI Black",
 				fill: "#FFF",
 				align: "center"
 			}
