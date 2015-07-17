@@ -18,7 +18,7 @@ MainMenuState.prototype = {
 			this.world.height/2,
 			"",
 			{
-				font: "32px Segoe UI Black",
+				font: "18px '8bit_wondernominal'",
 				fill: "#FFF",
 				align: "center"
 			}
