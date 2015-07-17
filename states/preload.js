@@ -6,6 +6,7 @@ PreloadState.prototype = {
 		// images, spritesheets, audio, etc...
 		this.game.load.spritesheet('player_idle', 'assets/img/player_idle.png', 52, 60);
 		this.game.load.image('background', 'assets/img/street.png');
+		this.game.load.audio('shoot', 'assets/sound/shoot.wav');
 	},
 	
 	create: function() {
