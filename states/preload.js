@@ -4,7 +4,8 @@ PreloadState.prototype = {
 	preload: function() {
 		// load all of the game assets
 		// images, spritesheets, audio, etc...
-		this.game.load.image('player', 'assets/player.png');
+		this.game.load.spritesheet('player_walk', 'assets/img/player_walk.png', 52, 60);
+		this.game.load.image('background', 'assets/img/street.png');
 	},
 	
 	create: function() {
