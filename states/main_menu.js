@@ -7,7 +7,7 @@ MainMenuState.prototype = {
 
 		this.spaceKey.onDown.add(this.transitionToStart, this);
 
-		this.background = this.game.add.tileSprite(0, 0, 1024, 500, 'background');
+		this.background = this.game.add.tileSprite(0, 0, 1024, 500, 'street');
 
 		var player_idle = this.game.add.sprite(300, 400, 'player_idle');
 		player_idle.animations.add('idle');
