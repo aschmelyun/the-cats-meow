@@ -1,5 +1,5 @@
-var BULLET_DELAY = 20;
-var BULLET_TIME = 20;
+var BULLET_DELAY = 500;
+var BULLET_TIME = 500;
 var BULLET_OFFSET_X = 54;
 var BULLET_OFFSET_Y = 36;
 
@@ -20,6 +20,10 @@ LevelState.prototype = {
 	create: function() {
 		fire_button = this.game.input.keyboard
             .addKey(Phaser.Keyboard.SPACEBAR);
+        up_button = this.game.input.keyboard
+            .addKey(Phaser.Keyboard.UP);
+        down_button = this.game.input.keyboard
+            .addKey(Phaser.Keyboard.DOWN);
 
         shoot_sound = this.game.add.audio('shoot');
 
@@ -47,6 +51,12 @@ LevelState.prototype = {
         if(fire_button.isDown) {
             this.fireBullet();
         }
+        if(up_button.isDown) {
+            this.movePlayer('up');
+        }
+        if(down_button.isDown) {
+            this.movePlayer('down');
+        }
 	},
 
     fireBullet: function() {
@@ -59,6 +69,26 @@ LevelState.prototype = {
                 bullet.body.velocity.x = 300;
                 BULLET_TIME = this.game.time.now + BULLET_DELAY;
                 shoot_sound.play();
+            }
+        }
+    },
+
+    movePlayer: function(direction) {
+        if(direction == 'down') {
+            if(player.y >= 430) {
+                player.y = 430;
+                player.x = player.x;
+            } else {
+                player.y += 1;
+                player.x -= 0.5;
+            }
+        } else if(direction == 'up') {
+            if(player.y <= 370) {
+                player.y = 370;
+                player.x = player.x;
+            } else {
+                player.y -= 1;
+                player.x += 0.5;
             }
         }
     },
