@@ -2,6 +2,10 @@ var MainMenuState = function(game) {};
 
 MainMenuState.prototype = {
 	create: function() {
+		this.bg_music = this.game.add.audio('bg-menu');
+		this.bg_music.loop = true;
+		this.bg_music.play();
+
 		this.spaceKey = this.game.input.keyboard
 			.addKey(Phaser.Keyboard.SPACEBAR);
 
@@ -29,6 +33,7 @@ MainMenuState.prototype = {
 
 	transitionToStart: function() {
 
+		this.bg_music.stop();
 		this.game.state.start('level');
 
 	}

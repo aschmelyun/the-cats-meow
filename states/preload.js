@@ -10,6 +10,14 @@ PreloadState.prototype = {
 		this.game.load.image('street', 'assets/img/street.png');
 		this.game.load.image('background', 'assets/img/background.png');
 		this.game.load.audio('shoot', 'assets/sound/shoot.wav');
+		this.game.load.audio('bg-menu', [
+			'assets/music/bg-menu.mp3',
+			'assets/music/bg-menu.ogg'
+		]);
+		this.game.load.audio('bg-level-1', [
+			'assets/music/bg-level-1.mp3',
+			'assets/music/bg-level-1.ogg'
+		]);
 	},
 	
 	create: function() {

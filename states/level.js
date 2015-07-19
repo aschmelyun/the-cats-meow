@@ -4,6 +4,7 @@ var BULLET_OFFSET_X = 54;
 var BULLET_OFFSET_Y = 36;
 
 var bullets,
+    bg_music,
     fire_button,
     shoot_sound,
     background_one,
@@ -18,6 +19,10 @@ LevelState.prototype = {
 	},
 
 	create: function() {
+        bg_music = this.game.add.audio('bg-level-1');
+        bg_music.loop = true;
+        bg_music.play();
+
 		fire_button = this.game.input.keyboard
             .addKey(Phaser.Keyboard.SPACEBAR);
         up_button = this.game.input.keyboard
