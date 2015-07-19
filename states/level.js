@@ -1,5 +1,14 @@
-var BULLET_DELAY = 500;
-var BULLET_TIME = 500;
+var BULLET_DELAY = 20;
+var BULLET_TIME = 20;
+var BULLET_OFFSET_X = 54;
+var BULLET_OFFSET_Y = 36;
+
+var bullets,
+    fire_button,
+    shoot_sound,
+    background_one,
+    background_two,
+    player;
 
 var LevelState = function(game) {};
 
@@ -9,23 +18,33 @@ LevelState.prototype = {
 	},
 
 	create: function() {
-		this.fireButton = this.game.input.keyboard
+		fire_button = this.game.input.keyboard
             .addKey(Phaser.Keyboard.SPACEBAR);
 
-        this.shootSound = this.game.add.audio('shoot');
-        this.background_1 = this.game.add.sprite(0, 0, 'background');
-        this.background_2 = this.game.add.sprite(1024, 0, 'background');
+        shoot_sound = this.game.add.audio('shoot');
 
-        var player_walk = this.game.add.sprite(300, 400, 'player_walk');
-        player_walk.animations.add('walk');
-        player_walk.animations.play('walk', 10, true);
+        background_one = this.game.add.sprite(0, 0, 'background');
+        background_two = this.game.add.sprite(1024, 0, 'background');
+
+        player = this.game.add.sprite(300, 400, 'player_walk');
+        player.animations.add('walk');
+        player.animations.play('walk', 10, true);
+
+        bullets = this.game.add.group();
+        bullets.enableBody = true;
+        bullets.physicsBodyType = Phaser.Physics.ARCADE;
+        bullets.createMultiple(30, 'bullet');
+        bullets.setAll('anchor.x', 0.5);
+        bullets.setAll('anchor.y', 1);
+        bullets.setAll('outOfBoundsKill', true);
+        bullets.setAll('checkWorldBounds', true);
 	},
 
 	update: function() {
-		this.moveBackground(this.background_1);
-        this.moveBackground(this.background_2);
+		this.moveBackground(background_one);
+        this.moveBackground(background_two);
 
-        if(this.fireButton.isDown) {
+        if(fire_button.isDown) {
             this.fireBullet();
         }
 	},
@@ -33,8 +52,14 @@ LevelState.prototype = {
     fireBullet: function() {
         // fire a bullet, play a sound.
         if (this.game.time.now > BULLET_TIME) {
-            this.shootSound.play();
-            BULLET_TIME = this.game.time.now + BULLET_DELAY;
+            bullet = bullets.getFirstExists(false);
+
+            if(bullet) {
+                bullet.reset(player.x + BULLET_OFFSET_X, player.y + BULLET_OFFSET_Y);
+                bullet.body.velocity.x = 300;
+                BULLET_TIME = this.game.time.now + BULLET_DELAY;
+                shoot_sound.play();
+            }
         }
     },
 
